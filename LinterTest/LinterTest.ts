@@ -1,21 +1,25 @@
-namespace linterTest {
+namespace LinterTest {
 
-  interface info {
-    text, key: key
+   enum KEY {
+    POS = 1, NEG = -1
   }
 
-  let info = { text: "G`udetmvhsgBncd1 ", key: key.Pos };
-  console.log(DeCrypt(info.text, info.key));
 
-  function DeCrypt(text: string, _Key: number) {
-    const result: string = "";
-    for (let i = 0; i < text.length(); i + +);
-      result += String.fromCharCode(text.charCodeAt(i) + _Key)
+  interface Info {
+    text: string, key: KEY
+  }
+
+  const info : Info = { text: "G`udetmvhsgBncd1 ", key: KEY.POS };
+  console.log(deCrypt(info.text, info.key));
+
+  function deCrypt(_text: string, _key: number):string {
+    let result: string = "";
+    for (let i: number = 0; i < _text.length; i++){
+      result += String.fromCharCode(_text.charCodeAt(i) + _key)
+    }
     return result;
   }
   
-  enum key {
-    Pos = 1, neg = -1
-  }
+ 
 
 }
