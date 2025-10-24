@@ -24,6 +24,25 @@ var Canvas;
         let colorfill = "#e26190ff";
         let colorstroke = "#44138430";
         drawTriangle(v1, v2, v3, colorfill, colorstroke);
+        for (let i = 0; i <= 200; i++) {
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+            function getRandomNumber() {
+                return Math.floor(Math.random() * 400);
+            }
+            let v1 = { x1: getRandomNumber(), x2: getRandomNumber() };
+            let v2 = { x1: getRandomNumber(), x2: getRandomNumber() };
+            let v3 = { x1: getRandomNumber(), x2: getRandomNumber() };
+            let colorfill = getRandomColor();
+            let colorstroke = getRandomColor();
+            drawTriangle(v1, v2, v3, colorfill, colorstroke);
+        }
     }
 })(Canvas || (Canvas = {}));
 //# sourceMappingURL=Canvas.js.map
