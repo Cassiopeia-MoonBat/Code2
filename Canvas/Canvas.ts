@@ -61,9 +61,9 @@ namespace Canvas {
         }
 
 
-        let v1: Vector = {x1: 10,x2: 0};
-        let v2: Vector = {x1: 20,x2: 3000};
-        let v3: Vector = {x1: 10,x2: 0};
+        let v1: Vector = {x1: 100,x2: 300};
+        let v2: Vector = {x1: 20,x2: 600};
+        let v3: Vector = {x1: 600,x2: 0};
         let colorfill = "#e26190ff";
         let colorstroke = "#44138430";
 
