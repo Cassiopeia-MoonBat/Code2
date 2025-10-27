@@ -86,7 +86,7 @@ namespace Canvas {
             const coordX : Vector[]= [];
 
             for (let i: number = 0; i < _amount; i++) {
-                const calc : Vector = {x1: Math.sin(step*i)*_radius ,x2: Math.cos(step*i)*_radius}
+                const calc : Vector = {x1: Math.sin(step*i)*_radius ,x2: Math.cos(step*i)*_radius};
                 
                 coordX.push({x1: calc.x1+center.x1, x2: calc.x2+center.x2});
             }
