@@ -35,6 +35,7 @@ namespace L09_Asteroids {
         //console.log("Shoot Laser");
         const hotspot: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
         const asteroidHit: Asteroid | null = getAsteroidHit(hotspot);
+        console.log(asteroidHit);
         if (asteroidHit)
             breakAsteroid(asteroidHit);
     }
@@ -71,7 +72,7 @@ namespace L09_Asteroids {
     }
 
     function update(): void {
-        //console.log("Update");
+        console.log("Update");
         crc2.fillRect(0,0,crc2.canvas.width,crc2.canvas.height);
 
         for (const asteroid of asteroids) {

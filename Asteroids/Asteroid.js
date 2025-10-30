@@ -36,7 +36,7 @@ var L09_Asteroids;
             L09_Asteroids.crc2.save();
             L09_Asteroids.crc2.translate(this.position.x, this.position.y);
             L09_Asteroids.crc2.scale(this.size, this.size);
-            L09_Asteroids.crc2.translate(-50, 50);
+            L09_Asteroids.crc2.translate(-50, -50);
             L09_Asteroids.crc2.stroke(L09_Asteroids.asteroidPaths[this.type]);
             L09_Asteroids.crc2.restore();
         }

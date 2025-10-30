@@ -26,6 +26,7 @@ var L09_Asteroids;
         //console.log("Shoot Laser");
         const hotspot = new L09_Asteroids.Vector(_event.clientX - L09_Asteroids.crc2.canvas.offsetLeft, _event.clientY - L09_Asteroids.crc2.canvas.offsetTop);
         const asteroidHit = getAsteroidHit(hotspot);
+        console.log(asteroidHit);
         if (asteroidHit)
             breakAsteroid(asteroidHit);
     }
@@ -55,7 +56,7 @@ var L09_Asteroids;
         }
     }
     function update() {
-        //console.log("Update");
+        console.log("Update");
         L09_Asteroids.crc2.fillRect(0, 0, L09_Asteroids.crc2.canvas.width, L09_Asteroids.crc2.canvas.height);
         for (const asteroid of asteroids) {
             asteroid.move(1 / 50);
