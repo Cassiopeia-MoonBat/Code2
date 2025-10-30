@@ -15,7 +15,7 @@ namespace L09_Asteroids {
                 this.position = new Vector(0,0);
 
             this.velocity = new Vector(0,0);
-            this.velocity.random(100,200);
+            this.velocity.random(60,100);
 
             this.type = Math.floor(Math.random()*4);
             this.size = _size;

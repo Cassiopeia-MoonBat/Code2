@@ -13,7 +13,7 @@ var L09_Asteroids;
             else
                 this.position = new L09_Asteroids.Vector(0, 0);
             this.velocity = new L09_Asteroids.Vector(0, 0);
-            this.velocity.random(100, 200);
+            this.velocity.random(60, 100);
             this.type = Math.floor(Math.random() * 4);
             this.size = _size;
         }
