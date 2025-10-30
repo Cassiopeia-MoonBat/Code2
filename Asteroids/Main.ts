@@ -23,7 +23,7 @@ namespace L09_Asteroids {
         //createShip();
 
         //canvas.addEventListener("mousedown", loadLaser);
-        canvas.addEventListener("mouseover", shootLaser);
+        canvas.addEventListener("mouseup", shootLaser);
         //canvas.addEventListener("keypress", handleKeypress);
         //canvas.addEventListener("mousemove", setHeading);
 

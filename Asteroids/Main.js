@@ -17,7 +17,7 @@ var L09_Asteroids;
         createAsterods(5);
         //createShip();
         //canvas.addEventListener("mousedown", loadLaser);
-        canvas.addEventListener("mouseover", shootLaser);
+        canvas.addEventListener("mouseup", shootLaser);
         //canvas.addEventListener("keypress", handleKeypress);
         //canvas.addEventListener("mousemove", setHeading);
         window.setInterval(update, 20);
