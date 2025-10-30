@@ -34,7 +34,11 @@ namespace Oldmacdonald{
             console.log("Everywhere a "+ this.sound + " "+ this.sound);
             console.log(" Old MacDonald had a farm, Ee-aye, ee-aye, oh.");
         } 
+
+        public specialAction():void {}
     }
+
+    
     
 }
 

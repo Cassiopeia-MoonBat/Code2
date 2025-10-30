@@ -40,6 +40,7 @@ namespace Oldmacdonald {
         for (const animal of farm) {
             animal.sing();
             animal.eat();
+            animal.specialAction();
         }
         for (const numb of stock){
             numb.showStock();
