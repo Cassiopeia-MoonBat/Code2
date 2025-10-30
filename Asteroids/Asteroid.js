@@ -9,7 +9,7 @@ var L09_Asteroids;
         constructor(_size, _position) {
             //console.log("Asteroid Constructor");
             if (_position)
-                this.position = _position;
+                this.position = _position.copy();
             else
                 this.position = new L09_Asteroids.Vector(0, 0);
             this.velocity = new L09_Asteroids.Vector(0, 0);
@@ -37,6 +37,7 @@ var L09_Asteroids;
             L09_Asteroids.crc2.translate(this.position.x, this.position.y);
             L09_Asteroids.crc2.scale(this.size, this.size);
             L09_Asteroids.crc2.translate(-50, -50);
+            L09_Asteroids.crc2.lineWidth = 1 / this.size;
             L09_Asteroids.crc2.stroke(L09_Asteroids.asteroidPaths[this.type]);
             L09_Asteroids.crc2.restore();
         }

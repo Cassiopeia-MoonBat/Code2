@@ -32,6 +32,11 @@ namespace L09_Asteroids {
             this.scale(length);
 
         }
+
+        public copy(): Vector {
+            const copy: Vector = new Vector(this.x,this.y);
+            return copy;
+        }
     }
 
 }
