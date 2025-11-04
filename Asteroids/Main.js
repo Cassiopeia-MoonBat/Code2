@@ -13,19 +13,21 @@ var L09_Asteroids;
         L09_Asteroids.crc2.strokeStyle = "white";
         L09_Asteroids.createPaths();
         createAsteroids(5);
-        //createShip();
-        canvas.addEventListener("mousedown", shootProjectile);
+        createUfo();
+        canvas.addEventListener("ufoShoots", handleUfoShot);
         canvas.addEventListener("mouseup", shootLaser);
         //canvas.addEventListener("keypress", handleKeypress);
         //canvas.addEventListener("mousemove", setHeading);
         window.setInterval(update, 20);
     }
-    function shootProjectile(_event) {
-        const origin = new L09_Asteroids.Vector(_event.clientX - L09_Asteroids.crc2.canvas.offsetLeft, _event.clientY - L09_Asteroids.crc2.canvas.offsetTop);
-        const velocity = new L09_Asteroids.Vector(0, 0);
-        velocity.random(100, 100);
-        const projectile = new L09_Asteroids.Projectile(origin, velocity);
+    function shootProjectile(_origin) {
+        const velocity = L09_Asteroids.Vector.getRandom(100, 100);
+        const projectile = new L09_Asteroids.Projectile(_origin, velocity);
         moveables.push(projectile);
+    }
+    function handleUfoShot(_event) {
+        const ufo = _event.detail.ufo;
+        shootProjectile(ufo.position);
     }
     function shootLaser(_event) {
         const hotspot = new L09_Asteroids.Vector(_event.clientX - L09_Asteroids.crc2.canvas.offsetLeft, _event.clientY - L09_Asteroids.crc2.canvas.offsetTop);
@@ -57,6 +59,10 @@ var L09_Asteroids;
             moveables.push(asteroid);
         }
     }
+    function createUfo() {
+        const ufo = new L09_Asteroids.Ufo();
+        moveables.push(ufo);
+    }
     function deleteExpandable() {
         for (let i = moveables.length - 1; i >= 0; i--) {
             if (moveables[i].expendable) {
@@ -71,7 +77,6 @@ var L09_Asteroids;
             moveable.draw();
         }
         deleteExpandable();
-        //ship.draw();
         //handleCollisions();
     }
 })(L09_Asteroids || (L09_Asteroids = {}));

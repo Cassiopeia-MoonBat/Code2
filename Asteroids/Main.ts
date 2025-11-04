@@ -18,9 +18,9 @@ namespace L09_Asteroids {
         createPaths();
 
         createAsteroids(5);
-        //createShip();
+        createUfo();
 
-        canvas.addEventListener("mousedown", shootProjectile);
+        canvas.addEventListener("ufoShoots", handleUfoShot);
         canvas.addEventListener("mouseup", shootLaser);
         //canvas.addEventListener("keypress", handleKeypress);
         //canvas.addEventListener("mousemove", setHeading);
@@ -29,12 +29,15 @@ namespace L09_Asteroids {
 
     }
 
-    function shootProjectile(_event: MouseEvent): void {
-        const origin: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
-        const velocity: Vector = new Vector(0, 0);
-        velocity.random(100, 100);
-        const projectile: Projectile = new Projectile(origin, velocity);
+    function shootProjectile(_origin: Vector): void {
+        const velocity: Vector = Vector.getRandom(100, 100);
+        const projectile: Projectile = new Projectile(_origin, velocity);
         moveables.push(projectile);
+    }
+
+    function handleUfoShot(_event: Event): void{
+        const ufo: Ufo = (<CustomEvent>_event).detail.ufo;
+        shootProjectile(ufo.position);
     }
 
     function shootLaser(_event: MouseEvent): void {
@@ -74,6 +77,11 @@ namespace L09_Asteroids {
         }
     }
 
+    function createUfo():void{
+        const ufo: Ufo = new Ufo();
+        moveables.push(ufo);
+    }
+
     function deleteExpandable(): void {
         for (let i: number = moveables.length - 1; i >= 0; i--) {
             if (moveables[i].expendable) {
@@ -91,8 +99,6 @@ namespace L09_Asteroids {
         }
 
         deleteExpandable();
-
-        //ship.draw();
         //handleCollisions();
     }
 

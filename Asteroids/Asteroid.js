@@ -2,18 +2,11 @@
 var L09_Asteroids;
 (function (L09_Asteroids) {
     class Asteroid extends L09_Asteroids.Moveable {
-        position;
-        velocity;
-        type;
         size;
+        type;
         constructor(_size, _position) {
             super(_position);
-            if (_position)
-                this.position = _position.copy();
-            else
-                this.position = new L09_Asteroids.Vector(0, 0);
-            this.velocity = new L09_Asteroids.Vector(0, 0);
-            this.velocity.random(60, 100);
+            this.velocity = L09_Asteroids.Vector.getRandom(60, 100);
             this.type = Math.floor(Math.random() * 4);
             this.size = _size;
         }

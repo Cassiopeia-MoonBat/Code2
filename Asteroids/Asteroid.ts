@@ -1,23 +1,13 @@
 namespace L09_Asteroids {
 
     export class Asteroid extends Moveable{
-
-        public position: Vector;
-        public velocity: Vector;
-        public type: number;
         public size: number;
-
+        private type: number;
+        
         public constructor(_size: number, _position?: Vector){
             super(_position);
-
-
-            if(_position)
-                this.position = _position.copy();
-            else
-                this.position = new Vector(0,0);
-
-            this.velocity = new Vector(0,0);
-            this.velocity.random(60,100);
+        
+            this.velocity = Vector.getRandom(60,100);
 
             this.type = Math.floor(Math.random()*4);
             this.size = _size;

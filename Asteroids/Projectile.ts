@@ -2,6 +2,7 @@ namespace L09_Asteroids {
 
     export class Projectile extends Moveable {
         public lifetime: number = 2;
+        //private maxLifetime: number;
 
         public constructor(_position: Vector, _velocity: Vector) {
             super(_position);

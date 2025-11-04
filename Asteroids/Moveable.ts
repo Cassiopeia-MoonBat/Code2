@@ -1,6 +1,6 @@
 namespace L09_Asteroids {
 
-    export class Moveable {
+    export abstract class Moveable {
 
         public position: Vector;
         public velocity: Vector;
@@ -30,9 +30,7 @@ namespace L09_Asteroids {
                 this.position.y -= crc2.canvas.height;
         }
 
-        public draw(): void {
-
-        }
+        public abstract draw():void;
 
 //         public isHit(_hotspot: Vector): boolean {
 //             const hitsize: number = 50 * this.size;

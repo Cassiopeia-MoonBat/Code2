@@ -25,8 +25,6 @@ var L09_Asteroids;
             if (this.position.y > L09_Asteroids.crc2.canvas.height)
                 this.position.y -= L09_Asteroids.crc2.canvas.height;
         }
-        draw() {
-        }
     }
     L09_Asteroids.Moveable = Moveable;
 })(L09_Asteroids || (L09_Asteroids = {}));
