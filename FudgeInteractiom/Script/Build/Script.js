@@ -41,6 +41,10 @@ var Script;
                     cmpTransform.mtxLocal.translateZ(1);
                 if (_direction == "s")
                     cmpTransform.mtxLocal.translateZ(-1);
+                if (_direction == "a")
+                    cmpTransform.mtxLocal.rotateY(5);
+                if (_direction == "d")
+                    cmpTransform.mtxLocal.rotateY(-5);
             };
             // Don't start when running in editor
             if (ƒ.Project.mode == ƒ.MODE.EDITOR)
@@ -59,27 +63,51 @@ var Script;
     var ƒ = FudgeCore;
     ƒ.Debug.info("Main Program Template running!");
     let viewport;
-    //let cuba: ƒ.Node;
+    let currentObject;
+    //let object: string;
     document.addEventListener("interactiveViewportStarted", start);
-    function start(_event) {
+    document.addEventListener("mousedown", hndMouseClick);
+    async function start(_event) {
         viewport = _event.detail;
-        //const cubaNode: ƒ.Node = viewport.getBranch().getChildByName("QueerStuffGOBRUMBRUM");
-        //cuba = cubaNode.getComponent(CubaControl);
-        document.addEventListener("mousemove", hndMouse);
+        //car = carNode.getComponent(carControl);
+        const carNode = viewport.getBranch().getChildByName("QueerStuffGoBRUMBRUM");
+        const carGraph = ƒ.Project.getResourcesByName("QueerStuffGoBRUMBRUM")[0];
+        for (let i = 0; i < 10; i++) {
+            const carInstance = await ƒ.Project.createGraphInstance(carGraph);
+            const position = ƒ.random.getVector3(new ƒ.Vector3(30, 0, 30), new ƒ.Vector3(-30, 0, -30));
+            carInstance.mtxLocal.translate(position);
+            carNode.getParent().addChild(carInstance);
+        }
         ƒ.Loop.addEventListener("loopFrame" /* ƒ.EVENT.LOOP_FRAME */, update);
         ƒ.Loop.start(); // start the game loop to continously draw the viewport, update the audiosystem and drive the physics i/a
     }
-    function hndMouse(_event) {
-        viewport.getBranch().getChildByName("QueerStuffGoBRUMBRUM").getComponent(Script.CustomComponentScript).rotater(_event.movementX);
+    function hndMouseClick(_event) {
+        if (_event.button != 2)
+            return;
+        const vecScreen = new ƒ.Vector2(_event.offsetX, _event.offsetY);
+        const ray = viewport.getRayFromClient(vecScreen);
+        console.log(ray);
+        const cars = viewport.getBranch().getChildrenByName("QueerStuffGoBRUMBRUM");
+        for (const car of cars) {
+            const vecDistance = ray.getDistance(car.mtxWorld.translation);
+            console.log(vecDistance.magnitude);
+            if (vecDistance.magnitude < 3)
+                currentObject = car;
+        }
     }
     function update( /*_event: Event*/) {
         // ƒ.Physics.simulate();  // if physics is included and used
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W]))
-            viewport.getBranch().getChildByName("QueerStuffGoBRUMBRUM").getComponent(Script.CustomComponentScript).move("w");
-        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S]))
-            viewport.getBranch().getChildByName("QueerStuffGoBRUMBRUM").getComponent(Script.CustomComponentScript).move("s");
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.W]) || ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_UP]))
+            currentObject.getComponent(Script.CustomComponentScript).move("w");
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.S]) || ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_DOWN]))
+            currentObject.getComponent(Script.CustomComponentScript).move("s");
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.A]) || ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_LEFT]))
+            currentObject.getComponent(Script.CustomComponentScript).move("a");
+        if (ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.D]) || ƒ.Keyboard.isPressedOne([ƒ.KEYBOARD_CODE.ARROW_RIGHT]))
+            currentObject.getComponent(Script.CustomComponentScript).move("d");
         viewport.draw();
         ƒ.AudioManager.default.update();
     }
 })(Script || (Script = {}));
+// An object of a class, can be replaced by any object of an subclass
 //# sourceMappingURL=Script.js.map

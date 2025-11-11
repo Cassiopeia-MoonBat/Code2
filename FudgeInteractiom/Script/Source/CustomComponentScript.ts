@@ -61,6 +61,10 @@ namespace Script {
         cmpTransform.mtxLocal.translateZ(1);
       if(_direction == "s")
         cmpTransform.mtxLocal.translateZ(-1);
+      if(_direction == "a")
+        cmpTransform.mtxLocal.rotateY(5);
+      if(_direction == "d")
+        cmpTransform.mtxLocal.rotateY(-5);
     
     };
 
