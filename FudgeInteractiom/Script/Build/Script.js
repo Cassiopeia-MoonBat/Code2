@@ -91,8 +91,11 @@ var Script;
         for (const car of cars) {
             const vecDistance = ray.getDistance(car.mtxWorld.translation);
             console.log(vecDistance.magnitude);
-            if (vecDistance.magnitude < 3)
+            car.getComponent(ƒ.ComponentMaterial).clrPrimary = ƒ.Color.CSS("yellow");
+            if (vecDistance.magnitude < 2) {
                 currentObject = car;
+                car.getComponent(ƒ.ComponentMaterial).clrPrimary = ƒ.Color.CSS("green");
+            }
         }
     }
     function update( /*_event: Event*/) {

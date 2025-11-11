@@ -40,8 +40,11 @@ namespace Script {
     for (const car of cars) {
       const vecDistance: ƒ.Vector3 = ray.getDistance(car.mtxWorld.translation);
       console.log(vecDistance.magnitude); 
-      if (vecDistance.magnitude < 3)
+      car.getComponent(ƒ.ComponentMaterial).clrPrimary = ƒ.Color.CSS("yellow");
+      if (vecDistance.magnitude < 2){
         currentObject = car;
+        car.getComponent(ƒ.ComponentMaterial).clrPrimary = ƒ.Color.CSS("green");
+      }
     }
   }
 
